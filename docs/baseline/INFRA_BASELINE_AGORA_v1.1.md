@@ -3,48 +3,44 @@ Projeto: iseek-infrastructure
 Escopo: Subida de ambiente dedicado para teste real
 Princípios iSeek: Disciplina + Isolamento + Determinismo + Data Safety
 
-ISEEK — BASELINE ATUAL
-Projeto: iSeek Core
-Data de Referência: 2026-02-22
-Base Estrutural: Stable v1 (03.x → 07.0)
-Framework Base: Laravel 12 (Inviolável)
-Commit de Referência: c2ca50c
-Tag Oficial: Stable-v1
-
 ────────────────────────────────────────
 
 1) DEFINIÇÃO
 
-O presente documento registra o estado estrutural consolidado
-do iSeek Core no momento do congelamento do marco Stable v1.
+Este documento estabelece o baseline mínimo de infraestrutura
+para operar a iSeek em ambiente dedicado de teste real,
+preservando as invariantes Stable v1 (03.x → 07.0).
 
 ────────────────────────────────────────
 
-2) COMPONENTES ESTRUTURAIS
+2) ESCOPO (AGORA)
 
-- Camada Governada Stable v1 (03.x → 07.0)
-- Invariantes estruturais declaradas
-- Determinismo estrutural
-- Fonte Única da Verdade
-- Isolamento por tenant
-- Governança antes de inteligência
-
-────────────────────────────────────────
-
-3) STATUS
-
-Marco arquitetural congelado.
-Sem alterações posteriores na engine.
-Sem reinterpretação estrutural.
+- Ambiente dedicado (sem misturar com servidores de clientes/aaPanel)
+- Deploy previsível (Laravel 12)
+- Hardening mínimo obrigatório
+- Backup e restore testado
+- Logs com retenção controlada
+- Separação conceitual: Public Web vs Core SaaS
 
 ────────────────────────────────────────
 
-4) OBSERVAÇÃO
+3) INVARIANTES DE INFRA (NÃO NEGOCIÁVEIS)
 
-Este baseline representa o ponto oficial de referência estrutural.
-Qualquer evolução futura deve preservar as invariantes declaradas.
+- Tenant isolation preservado (nenhum leak cross-tenant)
+- Data Safety (segredos fora do repo; sem segredos em logs/UI)
+- MySQL como fonte de verdade onde definido
+- Redis nunca é “fonte de verdade”
+- Determinismo operacional (mudanças documentadas)
+
+────────────────────────────────────────
+
+4) REFERÊNCIA INSTITUCIONAL
+
+Este baseline é alinhado ao marco Stable v1 (03.x → 07.0).
+Infra não altera engine, invariantes ou fluxo de execução.
+Infra apenas sustenta a operação com disciplina.
 
 ────────────────────────────────────────
 
 FIM DO DOCUMENTO
-ISEEK — Baseline Atual
+ISEEK — Infra Baseline (Agora) v1.1
