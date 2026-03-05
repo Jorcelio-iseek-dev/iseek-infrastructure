@@ -1,0 +1,116 @@
+ISEEK — REGISTRO DE BASELINE
+Projeto: iseek-infrastructure
+Registro: ISEEK-INFRA-2026-001
+Data: 2026-03-03
+Status: Frozen
+Ambiente: Core SaaS Operacional
+
+────────────────────────────────────────
+
+1) ESCOPO
+
+Este documento registra o estado estrutural da
+Infra Core SaaS do iSeek Automations
+após validação completa de publicação,
+segurança básica e política de backup externo.
+
+Alinhado com Stable v1 e sem impacto em invariantes estruturais.
+
+────────────────────────────────────────
+
+2) COMPONENTES OPERACIONAIS VALIDADOS
+
+✔ EC2 dedicada (us-east-1)
+✔ Elastic IP fixo
+✔ Nginx configurado
+✔ SSL válido via Let's Encrypt
+✔ Certbot renew testado (dry-run OK)
+✔ Supervisor worker ativo
+✔ Cron configurado
+✔ APP_ENV=production
+✔ APP_DEBUG=false
+✔ Cache/Routes/View cacheados
+✔ Storage linkado
+✔ Firewall (UFW) ativo (22/80/443)
+
+────────────────────────────────────────
+
+3) BACKUP ESTRUTURAL
+
+✔ Dump automático diário (03:00 UTC)
+✔ Bucket S3 privado (iseek-core-backups-prod)
+✔ Upload automatizado
+✔ Checksum SHA256 gerado
+✔ Restore validado a partir do S3
+✔ Separação de usuário uploader e usuário restore
+✔ Rotação de credenciais após exposição
+
+────────────────────────────────────────
+
+4) RESTORE VALIDADO
+
+Restore executado com sucesso para DB de teste:
+
+Database: iseek_ia_restore
+Tabelas: 72 migrations confirmadas
+Integridade: SHA256 validado
+
+Conclusão técnica:
+Backup externo funcional e restaurável.
+
+────────────────────────────────────────
+
+5) CONGELAMENTO
+
+Com base nas validações executadas,
+a Infraestrutura Core SaaS encontra-se:
+
+Operacional
+Auditável
+Restaurável
+Minimamente segura
+
+Este marco é oficialmente registrado como:
+
+ISEEK — Infra Core SaaS Baseline v1.0
+
+────────────────────────────────────────
+
+6) PRÓXIMA ETAPA (SEPARADA)
+
+ISEEK — Infra Security Hardening v1.1
+(Migração de Access Keys para IAM Role)
+
+────────────────────────────────────────
+
+FIM DO REGISTRO
+
+
+
+ISEEK — Institutional Registry Entry
+ID: ISEEK-INFRA-2026-001
+Categoria: Infrastructure Baseline
+Versão: v1.0
+Data: 2026-03-03
+Status: Frozen
+
+Título:
+Infra Core SaaS Baseline v1.0
+
+Descrição:
+Registro oficial do estado operacional da infraestrutura
+Core SaaS do iSeek Automations após validação completa
+de publicação, backup externo e restore.
+
+Escopo:
+Camada operacional de produção.
+
+Alinhamento:
+Alinhado com Stable v1 e sem impacto em invariantes estruturais.
+
+Imutabilidade:
+Este registro representa um marco estrutural congelado.
+Qualquer evolução futura deverá gerar nova versão (v1.1+).
+
+Referência:
+Projeto iseek-infrastructure.
