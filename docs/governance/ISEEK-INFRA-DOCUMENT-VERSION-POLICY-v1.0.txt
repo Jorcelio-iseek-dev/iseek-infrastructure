@@ -1,0 +1,286 @@
+# PATH: docs/governance/ISEEK-INFRA-DOCUMENT-VERSION-POLICY-v1.0.txt
+
+ISEEK — DOCUMENT VERSION POLICY
+Infrastructure Documentation Version Policy
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Ativo
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento define a política de versionamento
+dos documentos de infraestrutura do projeto
+iSeek Automations.
+
+O objetivo é garantir:
+
+• rastreabilidade documental
+• evolução controlada
+• consistência entre documentos
+
+
+────────────────────────────────────────
+2) PRINCÍPIO FUNDAMENTAL
+────────────────────────────────────────
+
+Documentos nunca devem ser alterados
+sem atualização de versão.
+
+Mudanças relevantes devem gerar
+nova versão do documento.
+
+
+────────────────────────────────────────
+3) PADRÃO DE VERSIONAMENTO
+────────────────────────────────────────
+
+Documentos utilizam o padrão:
+
+vMAJOR.MINOR
+
+Exemplos:
+
+v1.0
+v1.1
+v1.2
+v2.0
+
+
+Regras:
+
+MAJOR
+
+Mudança estrutural ou alteração significativa
+de conteúdo.
+
+Exemplo:
+
+v1.0 → v2.0
+
+
+MINOR
+
+Atualizações menores ou ajustes
+sem impacto estrutural.
+
+Exemplo:
+
+v1.0 → v1.1
+
+
+────────────────────────────────────────
+4) CONVENÇÃO DE NOMES
+────────────────────────────────────────
+
+Arquivos seguem o padrão:
+
+ISEEK-INFRA-[TIPO]-[DESCRIÇÃO]-v[VERSÃO].txt
+
+
+Exemplos:
+
+ISEEK-INFRA-ARCHITECTURE-v1.0.txt
+ISEEK-INFRA-RISK-MODEL-v1.0.txt
+ISEEK-INFRA-GOVERNANCE-CHARTER-v1.0.txt
+
+
+Runbooks utilizam:
+
+ISEEK-RUNBOOK-[DESCRIÇÃO]-v[VERSÃO].txt
+
+
+────────────────────────────────────────
+5) PRINCÍPIO DE IMUTABILIDADE
+────────────────────────────────────────
+
+Documentos associados a marcos institucionais
+não devem ser alterados.
+
+Exemplo:
+
+ISEEK-INFRA-2026-001-infra-core-saas-baseline-v1.0.txt
+
+Esse tipo de documento representa
+um registro institucional congelado.
+
+
+────────────────────────────────────────
+6) ATUALIZAÇÕES
+────────────────────────────────────────
+
+Quando uma atualização for necessária:
+
+1) Criar nova versão do documento
+
+2) Atualizar o número da versão
+
+3) Registrar mudança no
+decision log da infraestrutura
+
+
+────────────────────────────────────────
+7) GOVERNANÇA
+────────────────────────────────────────
+
+Mudanças em documentos críticos
+devem seguir a política definida em:
+
+ISEEK-INFRA-CHANGE-POLICY-v1.0.txt
+
+
+────────────────────────────────────────
+FIM
+
+
+outro
+
+
+# PATH: docs/governance/ISEEK-INFRA-DOCUMENT-VERSION-POLICY-v1.0.txt
+
+ISEEK — DOCUMENT VERSION POLICY
+Infrastructure Documentation Version Policy
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Ativo
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento define a política de versionamento
+dos documentos de infraestrutura do projeto
+iSeek Automations.
+
+O objetivo é garantir:
+
+• rastreabilidade documental
+• evolução controlada
+• consistência entre documentos
+
+
+────────────────────────────────────────
+2) PRINCÍPIO FUNDAMENTAL
+────────────────────────────────────────
+
+Documentos nunca devem ser alterados
+sem atualização de versão.
+
+Mudanças relevantes devem gerar
+nova versão do documento.
+
+
+────────────────────────────────────────
+3) PADRÃO DE VERSIONAMENTO
+────────────────────────────────────────
+
+Documentos utilizam o padrão:
+
+vMAJOR.MINOR
+
+Exemplos:
+
+v1.0
+v1.1
+v1.2
+v2.0
+
+
+Regras:
+
+MAJOR
+
+Mudança estrutural ou alteração significativa
+de conteúdo.
+
+Exemplo:
+
+v1.0 → v2.0
+
+
+MINOR
+
+Atualizações menores ou ajustes
+sem impacto estrutural.
+
+Exemplo:
+
+v1.0 → v1.1
+
+
+────────────────────────────────────────
+4) CONVENÇÃO DE NOMES
+────────────────────────────────────────
+
+Arquivos seguem o padrão:
+
+ISEEK-INFRA-[TIPO]-[DESCRIÇÃO]-v[VERSÃO].txt
+
+
+Exemplos:
+
+ISEEK-INFRA-ARCHITECTURE-v1.0.txt
+ISEEK-INFRA-RISK-MODEL-v1.0.txt
+ISEEK-INFRA-GOVERNANCE-CHARTER-v1.0.txt
+
+
+Runbooks utilizam:
+
+ISEEK-RUNBOOK-[DESCRIÇÃO]-v[VERSÃO].txt
+
+
+────────────────────────────────────────
+5) PRINCÍPIO DE IMUTABILIDADE
+────────────────────────────────────────
+
+Documentos associados a marcos institucionais
+não devem ser alterados.
+
+Exemplo:
+
+ISEEK-INFRA-2026-001-infra-core-saas-baseline-v1.0.txt
+
+Esse tipo de documento representa
+um registro institucional congelado.
+
+
+────────────────────────────────────────
+6) ATUALIZAÇÕES
+────────────────────────────────────────
+
+Quando uma atualização for necessária:
+
+1) Criar nova versão do documento
+
+2) Atualizar o número da versão
+
+3) Registrar mudança no
+decision log da infraestrutura
+
+
+────────────────────────────────────────
+7) GOVERNANÇA
+────────────────────────────────────────
+
+Mudanças em documentos críticos
+devem seguir a política definida em:
+
+ISEEK-INFRA-CHANGE-POLICY-v1.0.txt
+
+
+────────────────────────────────────────
+FIM
+

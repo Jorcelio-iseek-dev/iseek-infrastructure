@@ -1,0 +1,259 @@
+# PATH: docs/architecture/ISEEK-INFRA-risk-model-v1.0.txt
+
+ISEEK — INFRASTRUCTURE RISK MODEL
+Infra Risk Model v1.0
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Documento Arquitetural
+
+Alinhamento:
+
+Infra Core SaaS Baseline v1.0 — Frozen
+Registro: ISEEK-INFRA-2026-001
+Repositório: iseek-infrastructure
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento descreve os principais riscos
+associados à infraestrutura do iSeek Automations
+no estado atual do baseline v1.0.
+
+Objetivo:
+
+• identificar riscos técnicos
+• registrar impacto potencial
+• documentar estratégias de mitigação
+
+Este documento não executa ações.
+Ele apenas descreve o modelo de risco.
+
+
+────────────────────────────────────────
+2) ESCOPO
+────────────────────────────────────────
+
+Infraestrutura analisada:
+
+Internet
+   ↓
+Cloudflare
+   ↓
+AWS EC2
+   ↓
+Nginx
+   ↓
+PHP-FPM
+   ↓
+Laravel
+   ↓
+MySQL
+   ↓
+AWS S3 (Backups)
+
+
+────────────────────────────────────────
+3) PRINCIPAIS RISCOS IDENTIFICADOS
+────────────────────────────────────────
+
+
+RISCO 1 — Falha total da instância EC2
+
+Descrição:
+
+Falha completa da instância EC2
+ou indisponibilidade da região.
+
+Impacto:
+
+Interrupção total da aplicação.
+
+Mitigação atual:
+
+• Backup diário S3
+• Restore testado
+
+Mitigação futura possível:
+
+• snapshots automatizados
+• multi-region backup
+• replicação de infraestrutura
+
+
+────────────────────────────────────────
+
+
+RISCO 2 — Ataques diretos ao servidor
+
+Descrição:
+
+Tentativas de acesso direto ao IP da EC2.
+
+Impacto:
+
+Exploração de vulnerabilidades
+ou ataques automatizados.
+
+Mitigação atual:
+
+• Cloudflare proxy ativo
+• firewall UFW restringindo IPs
+• IP da EC2 oculto
+
+Mitigação futura possível:
+
+• regras avançadas WAF
+• rate limiting
+
+
+────────────────────────────────────────
+
+
+RISCO 3 — Perda de dados
+
+Descrição:
+
+Corrupção de banco ou erro operacional.
+
+Impacto:
+
+Perda parcial ou total de dados.
+
+Mitigação atual:
+
+• backup automático diário
+• armazenamento S3
+• restore validado
+
+Mitigação futura possível:
+
+• testes periódicos de restore
+• retenção multi-versão
+
+
+────────────────────────────────────────
+
+
+RISCO 4 — Vulnerabilidades de software
+
+Descrição:
+
+Falhas em dependências
+ou no sistema operacional.
+
+Impacto:
+
+Comprometimento da aplicação.
+
+Mitigação atual:
+
+• atualizações de segurança
+• hardening progressivo
+
+Mitigação futura possível:
+
+• monitoramento de CVEs
+• automação de patches
+
+
+────────────────────────────────────────
+
+
+RISCO 5 — Erro humano operacional
+
+Descrição:
+
+Alterações incorretas
+em configurações do servidor.
+
+Impacto:
+
+Interrupção do serviço.
+
+Mitigação atual:
+
+• documentação de runbooks
+• versionamento no repositório
+
+Mitigação futura possível:
+
+• automação de deploy
+• ambientes staging
+
+
+────────────────────────────────────────
+4) CLASSIFICAÇÃO DE RISCO
+────────────────────────────────────────
+
+Classificação qualitativa:
+
+Baixo
+Médio
+Alto
+
+Estado atual:
+
+Infraestrutura simples porém controlada.
+
+Riscos considerados:
+
+Aceitáveis para fase inicial
+do projeto.
+
+
+────────────────────────────────────────
+5) ESTRATÉGIA DE MITIGAÇÃO
+────────────────────────────────────────
+
+Estratégia geral adotada:
+
+1) Simplicidade arquitetural
+2) Backup confiável
+3) Proteção de rede
+4) Hardening incremental
+5) Evolução gradual
+
+
+────────────────────────────────────────
+6) RELAÇÃO COM ROADMAP DE INFRA
+────────────────────────────────────────
+
+Este documento se conecta com:
+
+Infra Architecture Overview v1.0
+Infra Evolution Roadmap v1.0
+Infra Security Hardening v1.1
+
+Cada evolução da infraestrutura
+deve considerar os riscos aqui descritos.
+
+
+────────────────────────────────────────
+7) CONCLUSÃO
+────────────────────────────────────────
+
+A infraestrutura atual do iSeek Automations
+é simples, funcional e controlada.
+
+O modelo de risco atual é considerado
+aceitável para o estágio inicial
+do projeto.
+
+A evolução planejada da infraestrutura
+deve reduzir progressivamente
+os riscos aqui descritos.
+
+
+────────────────────────────────────────
+FIM
+
+ISEEK — Infrastructure Risk Model v1.0

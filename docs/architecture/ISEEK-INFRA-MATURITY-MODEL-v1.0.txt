@@ -1,0 +1,197 @@
+# PATH: docs/architecture/ISEEK-INFRA-maturity-model-v1.0.txt
+
+ISEEK — INFRASTRUCTURE MATURITY MODEL
+Infrastructure Maturity Model v1.0
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Documento Arquitetural
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento define o modelo de maturidade
+da infraestrutura do projeto iSeek Automations.
+
+Objetivos:
+
+• identificar o estágio atual da infraestrutura
+• orientar evolução técnica
+• estabelecer metas de maturidade
+• permitir avaliação periódica pelo conselho
+
+
+────────────────────────────────────────
+2) VISÃO GERAL DO MODELO
+────────────────────────────────────────
+
+O modelo define cinco níveis de maturidade:
+
+Nível 1 — Infra Inicial
+Nível 2 — Infra Operacional
+Nível 3 — Infra Governada
+Nível 4 — Infra Observável
+Nível 5 — Infra Escalável
+
+
+────────────────────────────────────────
+3) NÍVEL 1 — INFRA INICIAL
+────────────────────────────────────────
+
+Características:
+
+• infraestrutura mínima
+• baixa automação
+• pouca documentação
+
+Riscos:
+
+• dependência de conhecimento informal
+• pouca capacidade de recuperação
+
+Situação típica:
+
+Projetos em estágio experimental.
+
+
+────────────────────────────────────────
+4) NÍVEL 2 — INFRA OPERACIONAL
+────────────────────────────────────────
+
+Características:
+
+• aplicação em produção
+• backups implementados
+• configuração básica de segurança
+• funcionamento estável
+
+Infraestrutura típica:
+
+Servidor único
+firewall básico
+SSL ativo
+
+
+────────────────────────────────────────
+5) NÍVEL 3 — INFRA GOVERNADA
+────────────────────────────────────────
+
+Características:
+
+• baseline documentado
+• governança de infraestrutura
+• runbooks operacionais
+• modelo de risco documentado
+• registro de decisões técnicas
+
+Infraestrutura passa a ser:
+
+documentada
+auditável
+disciplinada
+
+
+────────────────────────────────────────
+6) NÍVEL 4 — INFRA OBSERVÁVEL
+────────────────────────────────────────
+
+Características:
+
+• monitoramento avançado
+• centralização de logs
+• métricas operacionais
+• alertas automáticos
+• análise de incidentes
+
+Benefício:
+
+detecção rápida de problemas
+e melhor controle operacional.
+
+
+────────────────────────────────────────
+7) NÍVEL 5 — INFRA ESCALÁVEL
+────────────────────────────────────────
+
+Características:
+
+• infraestrutura distribuída
+• múltiplas instâncias
+• balanceamento de carga
+• alta disponibilidade
+• escalabilidade automática
+
+Infraestrutura preparada
+para crescimento significativo
+de usuários e carga.
+
+
+────────────────────────────────────────
+8) ESTADO ATUAL DO ISEEK
+────────────────────────────────────────
+
+Infraestrutura atual:
+
+ISEEK — Infra Core SaaS Baseline v1.0
+Status: Frozen
+
+Classificação de maturidade:
+
+Nível 3 — Infra Governada
+
+Motivo:
+
+• documentação completa
+• governança estabelecida
+• modelo de risco definido
+• runbooks operacionais
+• decisão log mantido
+
+
+────────────────────────────────────────
+9) EVOLUÇÃO ESPERADA
+────────────────────────────────────────
+
+Próximo estágio natural:
+
+Nível 4 — Infra Observável
+
+Possíveis melhorias:
+
+• monitoramento centralizado
+• alertas operacionais
+• análise de logs
+• métricas de infraestrutura
+
+
+────────────────────────────────────────
+10) CONCLUSÃO
+────────────────────────────────────────
+
+A infraestrutura do iSeek Automations
+alcançou um nível de maturidade
+considerado elevado para o estágio
+atual do projeto.
+
+A existência de governança,
+documentação estruturada
+e processos de mudança
+coloca a infraestrutura
+no nível de Infra Governada.
+
+A evolução futura deve priorizar
+observabilidade e escalabilidade.
+
+
+────────────────────────────────────────
+FIM
+
+ISEEK — Infrastructure Maturity Model v1.0

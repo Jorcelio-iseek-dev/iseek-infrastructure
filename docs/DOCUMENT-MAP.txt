@@ -1,0 +1,186 @@
+# PATH: docs/document-map.txt
+
+ISEEK — DOCUMENT MAP
+Infrastructure Documentation Navigation
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+Versão: v1.0
+Data: 2026-03-06
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento orienta como navegar
+pela documentação de infraestrutura
+do projeto iSeek Automations.
+
+Ele define:
+
+• ordem recomendada de leitura
+• finalidade de cada documento
+• relação entre os documentos
+
+
+────────────────────────────────────────
+2) LEITURA RECOMENDADA
+────────────────────────────────────────
+
+Para entender rapidamente a infraestrutura
+do projeto, recomenda-se a seguinte ordem:
+
+
+PASSO 1 — Visão Geral
+
+docs/architecture/ISEEK-INFRA-ARCHITECTURE-v1.0.txt
+
+Descrição geral da infraestrutura,
+componentes principais e arquitetura.
+
+
+PASSO 2 — Estado Atual
+
+docs/registry/entries/
+ISEEK-INFRA-2026-001-infra-core-saas-baseline-v1.0.txt
+
+Define o baseline congelado da infraestrutura.
+
+
+PASSO 3 — Modelo de Risco
+
+docs/architecture/ISEEK-INFRA-RISK-MODEL-v1.0.txt
+
+Identifica riscos técnicos e estratégias
+de mitigação.
+
+
+PASSO 4 — Governança
+
+docs/governance/ISEEK-INFRA-GOVERNANCE-CHARTER-v1.0.txt
+
+Define princípios de governança
+da infraestrutura.
+
+
+PASSO 5 — Políticas Operacionais
+
+docs/governance/ISEEK-INFRA-CHANGE-POLICY-v1.0.txt
+
+Define como mudanças devem ser realizadas.
+
+
+PASSO 6 — Registro de Decisões
+
+docs/governance/ISEEK-INFRA-DECISION-LOG-v1.0.txt
+
+Registro histórico de decisões técnicas.
+
+
+PASSO 7 — Runbooks Operacionais
+
+docs/runbooks/
+
+Contém guias operacionais para execução
+de tarefas específicas.
+
+
+────────────────────────────────────────
+3) DOCUMENTOS DE ARQUITETURA
+────────────────────────────────────────
+
+Localização:
+
+docs/architecture/
+
+
+Contém:
+
+ISEEK-INFRA-ARCHITECTURE-v1.0.txt
+Visão geral da arquitetura.
+
+ISEEK-INFRA-RISK-MODEL-v1.0.txt
+Modelo de riscos da infraestrutura.
+
+ISEEK-INFRA-MATURITY-MODEL-v1.0.txt
+Modelo de maturidade da infraestrutura.
+
+ISEEK-INFRA-EVOLUTION-ROADMAP-v1.0.txt
+Evolução planejada da infraestrutura.
+
+
+────────────────────────────────────────
+4) GOVERNANÇA
+────────────────────────────────────────
+
+Localização:
+
+docs/governance/
+
+Contém:
+
+ISEEK-INFRA-GOVERNANCE-CHARTER-v1.0.txt
+Princípios de governança.
+
+ISEEK-INFRA-CHANGE-POLICY-v1.0.txt
+Processo de mudança.
+
+ISEEK-INFRA-DECISION-LOG-v1.0.txt
+Registro de decisões técnicas.
+
+
+────────────────────────────────────────
+5) RUNBOOKS OPERACIONAIS
+────────────────────────────────────────
+
+Localização:
+
+docs/runbooks/
+
+Contém procedimentos técnicos detalhados
+para execução de tarefas específicas.
+
+Exemplos:
+
+ISEEK-RUNBOOK-INFRA-SECURITY-HARDENING-v1.1.txt
+ISEEK-RUNBOOK-CLOUDFLARE-ORIGIN-PROTECTION-v1.0.txt
+
+
+────────────────────────────────────────
+6) REGISTRO INSTITUCIONAL
+────────────────────────────────────────
+
+Localização:
+
+docs/registry/
+
+O registry registra eventos estruturais
+importantes da infraestrutura.
+
+Cada registro possui:
+
+• identificador único
+• descrição
+• versão
+• data
+
+
+────────────────────────────────────────
+7) PRINCÍPIO DE GOVERNANÇA
+────────────────────────────────────────
+
+Infraestrutura deve ser:
+
+• documentada
+• rastreável
+• governada
+• evolutiva
+
+Mudanças estruturais devem gerar
+novos registros no registry.
+
+
+────────────────────────────────────────
+FIM

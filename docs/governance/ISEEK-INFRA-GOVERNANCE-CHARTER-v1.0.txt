@@ -1,0 +1,171 @@
+# PATH: docs/governance/ISEEK-INFRA-governance-charter-v1.0.txt
+
+ISEEK — INFRASTRUCTURE GOVERNANCE CHARTER
+Infra Governance Charter v1.0
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Documento Institucional
+
+Alinhamento:
+
+Infra Core SaaS Baseline v1.0 — Frozen
+Registro: ISEEK-INFRA-2026-001
+Repositório: iseek-infrastructure
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento estabelece os princípios de governança
+da infraestrutura do iSeek Automations.
+
+Objetivos principais:
+
+• garantir estabilidade operacional
+• evitar mudanças não controladas
+• preservar integridade do baseline
+• documentar responsabilidades
+
+
+────────────────────────────────────────
+2) ESCOPO
+────────────────────────────────────────
+
+Este charter aplica-se a toda a infraestrutura:
+
+• Cloudflare
+• AWS EC2
+• firewall e rede
+• servidores web
+• banco de dados
+• backups
+• scripts operacionais
+
+
+────────────────────────────────────────
+3) PRINCÍPIOS DE GOVERNANÇA
+────────────────────────────────────────
+
+A infraestrutura deve seguir os princípios:
+
+1) Estabilidade antes de inovação
+2) Mudanças sempre documentadas
+3) Capacidade de rollback
+4) Segurança como prioridade
+5) Simplicidade arquitetural
+
+
+────────────────────────────────────────
+4) BASELINE CONGELADO
+────────────────────────────────────────
+
+A infraestrutura atual encontra-se registrada como:
+
+ISEEK — Infra Core SaaS Baseline v1.0
+Status: Frozen
+
+Qualquer mudança estrutural relevante
+deve gerar nova versão documentada.
+
+
+────────────────────────────────────────
+5) PROCESSO DE ALTERAÇÃO
+────────────────────────────────────────
+
+Toda alteração de infraestrutura deve seguir:
+
+1) Identificação da mudança
+2) Avaliação de impacto
+3) Registro no repositório
+4) Execução controlada
+5) Validação pós-implementação
+
+Mudanças críticas devem possuir
+procedimento de rollback documentado.
+
+
+────────────────────────────────────────
+6) RESPONSABILIDADES
+────────────────────────────────────────
+
+Responsáveis pela infraestrutura:
+
+Fundador / Equipe Técnica
+
+Responsabilidades:
+
+• manter estabilidade da infraestrutura
+• aplicar patches de segurança
+• monitorar operação
+• executar backups e validações
+
+
+────────────────────────────────────────
+7) INCIDENTES
+────────────────────────────────────────
+
+Em caso de incidentes operacionais:
+
+1) identificar causa raiz
+2) restaurar operação
+3) registrar incidente
+4) aplicar mitigação futura
+
+Documentação de incidentes
+deve ser mantida quando relevante.
+
+
+────────────────────────────────────────
+8) DOCUMENTAÇÃO
+────────────────────────────────────────
+
+A documentação oficial da infraestrutura
+encontra-se no repositório:
+
+iseek-infrastructure
+
+Estrutura documental:
+
+• registry
+• runbooks
+• architecture
+• governance
+
+
+────────────────────────────────────────
+9) EVOLUÇÃO
+────────────────────────────────────────
+
+A infraestrutura evoluirá
+de forma gradual e documentada.
+
+Mudanças estruturais relevantes
+devem gerar novos documentos
+e novos registros institucionais.
+
+
+────────────────────────────────────────
+10) CONCLUSÃO
+────────────────────────────────────────
+
+Este charter estabelece a disciplina
+de governança da infraestrutura
+do iSeek Automations.
+
+O objetivo é garantir crescimento
+controlado, seguro e auditável
+da plataforma.
+
+
+────────────────────────────────────────
+FIM
+
+ISEEK — Infrastructure Governance Charter v1.0

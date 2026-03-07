@@ -1,0 +1,234 @@
+# PATH: docs/governance/ISEEK-INFRA-decision-log-v1.0.txt
+
+ISEEK — INFRASTRUCTURE DECISION LOG
+Infrastructure Decision Log (IDL)
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Documento Institucional
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento registra decisões
+importantes relacionadas à infraestrutura
+do projeto iSeek Automations.
+
+Objetivo:
+
+• preservar memória técnica
+• explicar decisões arquiteturais
+• permitir rastreabilidade histórica
+• evitar repetição de debates antigos
+
+Cada decisão relevante deve ser
+registrada neste log.
+
+
+────────────────────────────────────────
+2) FORMATO DE REGISTRO
+────────────────────────────────────────
+
+Cada decisão deve conter:
+
+ID
+Data
+Título
+Contexto
+Decisão
+Consequências
+
+
+Exemplo:
+
+ID: IDL-0001
+Data: 2026-03-06
+Título: Uso de Cloudflare como camada de proteção
+
+
+────────────────────────────────────────
+3) DECISÕES REGISTRADAS
+────────────────────────────────────────
+
+
+ID: IDL-0001
+Data: 2026-03-03
+
+Título:
+Infraestrutura inicial baseada em EC2 única
+
+Contexto:
+
+Durante a fase inicial do projeto,
+era necessário estabelecer
+uma infraestrutura simples,
+controlada e economicamente viável.
+
+Decisão:
+
+Utilizar uma única instância EC2
+como servidor principal da aplicação.
+
+Consequências:
+
+Arquitetura simples
+facilidade de manutenção
+custo reduzido
+
+Escalabilidade futura dependerá
+de evolução da arquitetura.
+
+
+────────────────────────────────────────
+
+
+ID: IDL-0002
+Data: 2026-03-04
+
+Título:
+Uso de Cloudflare como proxy e WAF
+
+Contexto:
+
+Era necessário proteger o servidor
+contra ataques diretos e ocultar
+o IP público da instância EC2.
+
+Decisão:
+
+Utilizar Cloudflare como:
+
+• DNS público
+• proxy reverso
+• WAF
+• proteção DDoS
+
+Consequências:
+
+IP da EC2 oculto
+proteção contra ataques automatizados
+melhor segurança da aplicação.
+
+
+────────────────────────────────────────
+
+
+ID: IDL-0003
+Data: 2026-03-05
+
+Título:
+Firewall EC2 restrito à rede Cloudflare
+
+Contexto:
+
+Mesmo com Cloudflare ativo,
+o IP da EC2 poderia ser acessado
+diretamente.
+
+Decisão:
+
+Configurar firewall UFW permitindo
+HTTP e HTTPS apenas para
+ranges oficiais da Cloudflare.
+
+Consequências:
+
+Servidor protegido contra acesso direto
+redução de superfície de ataque.
+
+
+────────────────────────────────────────
+
+
+ID: IDL-0004
+Data: 2026-03-05
+
+Título:
+Implementação de backup automático S3
+
+Contexto:
+
+Garantir proteção contra perda de dados
+e permitir recuperação da aplicação.
+
+Decisão:
+
+Implementar backup automatizado
+via mysqldump com envio para
+AWS S3.
+
+Consequências:
+
+Backups externos disponíveis
+possibilidade de restore validada.
+
+
+────────────────────────────────────────
+
+
+ID: IDL-0005
+Data: 2026-03-06
+
+Título:
+Congelamento do Infra Core SaaS Baseline v1.0
+
+Contexto:
+
+Após validação completa da infraestrutura,
+incluindo backup e restore testados,
+o estado mínimo de produção foi atingido.
+
+Decisão:
+
+Registrar e congelar o estado da
+infraestrutura como:
+
+ISEEK — Infra Core SaaS Baseline v1.0
+
+Consequências:
+
+Infraestrutura inicial estabilizada
+e documentada institucionalmente.
+
+Evoluções futuras deverão gerar
+novas versões documentadas.
+
+
+────────────────────────────────────────
+4) EVOLUÇÃO DO LOG
+────────────────────────────────────────
+
+Novas decisões devem ser adicionadas
+sequencialmente.
+
+Formato de ID:
+
+IDL-0006
+IDL-0007
+IDL-0008
+
+
+────────────────────────────────────────
+5) RELAÇÃO COM OUTROS DOCUMENTOS
+────────────────────────────────────────
+
+Este documento complementa:
+
+Infrastructure Architecture Overview
+Infrastructure Evolution Roadmap
+Infrastructure Risk Model
+Infrastructure Governance Charter
+
+
+────────────────────────────────────────
+FIM
+
+ISEEK — Infrastructure Decision Log v1.0

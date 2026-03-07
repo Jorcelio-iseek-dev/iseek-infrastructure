@@ -1,0 +1,302 @@
+# PATH: docs/runbooks/infra/ISEEK-RUNBOOK-infra-security-hardening-v1.1.txt
+
+ISEEK — RUNBOOK OPERACIONAL
+Infra Security Hardening v1.1
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.1
+Data: 2026-03-06
+Status: Pós-Baseline (Hardening Incremental)
+
+Alinhamento Institucional:
+Infra Core SaaS Baseline v1.0 — Frozen
+Registro: ISEEK-INFRA-2026-001
+Repositório: iseek-infrastructure
+
+Observação:
+Este runbook executa apenas hardening incremental.
+Não altera arquitetura e não cria novas camadas.
+
+
+────────────────────────────────────────
+1) ARQUITETURA ATUAL
+────────────────────────────────────────
+
+Arquitetura validada:
+
+Internet
+   ↓
+Cloudflare (DNS + WAF + CDN)
+   ↓
+AWS EC2 (Elastic IP)
+   ↓
+UFW Firewall
+   ↓
+Nginx
+   ↓
+PHP-FPM
+   ↓
+Laravel Application
+
+Proteções ativas:
+
+✔ Proxy Cloudflare ativo
+✔ DNS ocultando IP da EC2
+✔ Firewall UFW ativo
+✔ Backup automático S3
+✔ Restore testado
+✔ SSL ativo
+
+
+────────────────────────────────────────
+2) CONFIGURAÇÃO DNS CLOUDFLARE
+────────────────────────────────────────
+
+Zona configurada no Cloudflare.
+
+Registro DNS:
+
+Tipo: A
+Nome: app
+Conteúdo: Elastic IP da EC2
+Proxy Status: Proxied
+TTL: Auto
+
+Validação:
+
+dig app.iseek.com.br +short
+
+Resultado esperado:
+
+IPs da Cloudflare.
+
+Exemplo:
+
+172.xx.xx.xx
+104.xx.xx.xx
+
+
+────────────────────────────────────────
+3) SSL MODE
+────────────────────────────────────────
+
+Painel Cloudflare:
+
+SSL/TLS → Overview
+
+Configuração recomendada:
+
+SSL Mode: Full (strict)
+
+Fluxo:
+
+Usuário
+   ↓ HTTPS
+Cloudflare
+   ↓ HTTPS
+EC2 (Nginx + Certbot)
+
+
+────────────────────────────────────────
+4) FIREWALL EC2 (UFW)
+────────────────────────────────────────
+
+Objetivo:
+
+Permitir acesso ao servidor
+somente através da Cloudflare.
+
+Política padrão:
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+Permitir SSH:
+
+sudo ufw allow 22/tcp
+
+Permitir HTTP/HTTPS apenas Cloudflare:
+
+for ip in $(curl https://www.cloudflare.com/ips-v4); do
+  sudo ufw allow from $ip to any port 80 proto tcp
+  sudo ufw allow from $ip to any port 443 proto tcp
+done
+
+Ativar firewall:
+
+sudo ufw enable
+
+Verificar:
+
+sudo ufw status verbose
+
+
+────────────────────────────────────────
+5) BACKUP AUTOMÁTICO
+────────────────────────────────────────
+
+Script:
+
+/usr/local/bin/iseek-db-backup.sh
+
+Execução manual:
+
+sudo /usr/local/bin/iseek-db-backup.sh
+
+Cron job:
+
+0 3 * * * /usr/local/bin/iseek-db-backup.sh >> /var/log/iseek-backup.log 2>&1
+
+Bucket S3:
+
+iseek-core-backups-prod
+
+Caminho:
+
+mysql/iseek_ia/
+
+
+────────────────────────────────────────
+6) TESTE DE RESTORE (VALIDADO)
+────────────────────────────────────────
+
+Download backup:
+
+aws s3 cp s3://iseek-core-backups-prod/mysql/iseek_ia/arquivo.sql.gz /tmp
+
+Restore:
+
+gunzip -c arquivo.sql.gz | mysql iseek_ia_restore
+
+Validação:
+
+SELECT COUNT(*) FROM migrations;
+
+Restore validado com sucesso.
+
+
+────────────────────────────────────────
+7) HARDENING SSH
+────────────────────────────────────────
+
+Arquivo:
+
+/etc/ssh/sshd_config
+
+Configuração recomendada:
+
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+
+Recarregar SSH:
+
+sudo systemctl reload ssh
+
+
+────────────────────────────────────────
+8) FAIL2BAN
+────────────────────────────────────────
+
+Instalar:
+
+sudo apt update
+sudo apt install fail2ban
+
+Ativar:
+
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+
+Verificar:
+
+sudo fail2ban-client status
+
+
+────────────────────────────────────────
+9) SECURITY HEADERS NGINX
+────────────────────────────────────────
+
+Arquivo:
+
+/etc/nginx/sites-available/app.iseek.com.br
+
+Adicionar:
+
+add_header X-Frame-Options "SAMEORIGIN";
+add_header X-Content-Type-Options "nosniff";
+add_header Referrer-Policy "strict-origin-when-cross-origin";
+add_header Permissions-Policy "geolocation=(), microphone=(), camera=()";
+
+Recarregar nginx:
+
+sudo nginx -t
+sudo systemctl reload nginx
+
+
+────────────────────────────────────────
+10) ATUALIZAÇÕES AUTOMÁTICAS
+────────────────────────────────────────
+
+Instalar:
+
+sudo apt install unattended-upgrades
+
+Ativar:
+
+sudo dpkg-reconfigure unattended-upgrades
+
+
+────────────────────────────────────────
+11) VALIDAÇÃO FINAL
+────────────────────────────────────────
+
+Checklist mínimo:
+
+[ ] DNS Cloudflare ativo
+[ ] Proxy Cloudflare ativo
+[ ] SSL Full Strict
+[ ] Firewall EC2 ativo
+[ ] HTTP/HTTPS apenas Cloudflare
+[ ] Backup S3 automático
+[ ] Restore testado
+[ ] SSH key-only
+[ ] Fail2ban ativo
+[ ] Security headers ativos
+
+
+────────────────────────────────────────
+12) ESTADO ATUAL DA INFRA
+────────────────────────────────────────
+
+Infra Core SaaS Baseline v1.0
+Status: Frozen
+
+Hardening atual:
+
+Infra Security Hardening v1.1
+Status: Em implementação
+
+
+────────────────────────────────────────
+13) EVOLUÇÕES FUTURAS (v1.2)
+────────────────────────────────────────
+
+Possíveis melhorias:
+
+Cloudflare Rate Limiting
+Cloudflare Bot Protection
+WAF Rules avançadas
+AWS CloudWatch logs
+Monitoramento infraestrutura
+Política lifecycle S3
+
+
+────────────────────────────────────────
+FIM
+ISEEK — Infra Security Hardening v1.1

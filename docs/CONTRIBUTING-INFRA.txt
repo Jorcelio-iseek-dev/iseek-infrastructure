@@ -1,0 +1,166 @@
+# PATH: docs/CONTRIBUTING-INFRA.txt
+
+ISEEK — INFRASTRUCTURE CONTRIBUTION GUIDELINES
+Infra Contribution Policy
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Ativo
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento define como mudanças na
+infraestrutura do projeto iSeek Automations
+devem ser propostas, avaliadas e implementadas.
+
+O objetivo é preservar:
+
+• estabilidade operacional
+• rastreabilidade de mudanças
+• governança técnica
+
+
+────────────────────────────────────────
+2) PRINCÍPIO FUNDAMENTAL
+────────────────────────────────────────
+
+Mudanças em infraestrutura devem ser:
+
+• documentadas
+• revisadas
+• registradas
+
+
+Infraestrutura não deve ser modificada
+diretamente em produção sem documentação
+e registro apropriado.
+
+
+────────────────────────────────────────
+3) TIPOS DE MUDANÇAS
+────────────────────────────────────────
+
+Mudanças podem ser classificadas como:
+
+
+Mudanças Operacionais
+
+Pequenos ajustes que não alteram
+arquitetura da infraestrutura.
+
+Exemplos:
+
+• atualização de configuração
+• ajustes de firewall
+• atualização de runbooks
+
+
+Mudanças Estruturais
+
+Mudanças que alteram arquitetura
+ou comportamento da infraestrutura.
+
+Exemplos:
+
+• alteração de arquitetura
+• inclusão de novos serviços
+• mudança de estratégia de rede
+
+
+Mudanças estruturais devem gerar:
+
+novo registro no registry.
+
+
+────────────────────────────────────────
+4) PROCESSO DE MUDANÇA
+────────────────────────────────────────
+
+Fluxo recomendado:
+
+
+1) Identificação da mudança
+
+2) Documentação da proposta
+
+3) Revisão técnica
+
+4) Implementação
+
+5) Registro no decision log
+
+
+Mudanças relevantes devem seguir
+a política definida em:
+
+ISEEK-INFRA-CHANGE-POLICY-v1.0.txt
+
+
+────────────────────────────────────────
+5) REGISTRO DE DECISÕES
+────────────────────────────────────────
+
+Toda decisão técnica relevante
+deve ser registrada em:
+
+docs/governance/
+ISEEK-INFRA-DECISION-LOG-v1.0.txt
+
+
+────────────────────────────────────────
+6) VERSIONAMENTO
+────────────────────────────────────────
+
+Mudanças em documentos devem seguir
+a política definida em:
+
+ISEEK-INFRA-DOCUMENT-VERSION-POLICY-v1.0.txt
+
+
+────────────────────────────────────────
+7) RUNBOOKS
+────────────────────────────────────────
+
+Procedimentos técnicos devem ser
+registrados como runbooks.
+
+Localização:
+
+docs/runbooks/
+
+
+────────────────────────────────────────
+8) BASELINE
+────────────────────────────────────────
+
+A infraestrutura atual está registrada em:
+
+ISEEK-INFRA-2026-001
+
+Infra Core SaaS Baseline v1.0
+
+Esse registro representa o estado
+congelado da infraestrutura.
+
+
+────────────────────────────────────────
+9) GOVERNANÇA
+────────────────────────────────────────
+
+Mudanças estruturais devem ser avaliadas
+pela governança técnica do projeto.
+
+Execução operacional:
+
+Equipe de engenharia iSeek
+
+
+────────────────────────────────────────
+FIM

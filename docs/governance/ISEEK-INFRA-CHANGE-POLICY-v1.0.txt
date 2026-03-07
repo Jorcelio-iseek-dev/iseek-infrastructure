@@ -1,0 +1,204 @@
+# PATH: docs/governance/ISEEK-INFRA-change-policy-v1.0.txt
+
+ISEEK — INFRASTRUCTURE CHANGE POLICY
+Infrastructure Change Policy v1.0
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Documento Institucional
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento define a política oficial
+de alteração da infraestrutura do projeto
+iSeek Automations.
+
+Objetivos:
+
+• garantir estabilidade operacional
+• evitar mudanças não controladas
+• preservar integridade do baseline
+• permitir evolução segura da infraestrutura
+
+
+────────────────────────────────────────
+2) ESCOPO
+────────────────────────────────────────
+
+Esta política aplica-se a qualquer alteração
+na infraestrutura do projeto, incluindo:
+
+• Cloudflare
+• AWS EC2
+• firewall e rede
+• web server
+• banco de dados
+• backups
+• scripts operacionais
+• configuração de segurança
+
+
+────────────────────────────────────────
+3) TIPOS DE MUDANÇA
+────────────────────────────────────────
+
+As mudanças são classificadas em três categorias:
+
+Mudança operacional
+Mudança de segurança
+Mudança estrutural
+
+
+Mudança operacional
+
+Pequenas alterações que não afetam
+a arquitetura da infraestrutura.
+
+Exemplos:
+
+• atualização de pacotes
+• ajustes de configuração
+• execução de runbooks
+
+
+Mudança de segurança
+
+Alterações destinadas a melhorar
+a segurança da infraestrutura.
+
+Exemplos:
+
+• firewall
+• hardening
+• WAF rules
+
+
+Mudança estrutural
+
+Alterações que modificam a arquitetura.
+
+Exemplos:
+
+• nova instância
+• mudança de provedor
+• introdução de load balancer
+• mudança de banco de dados
+
+
+────────────────────────────────────────
+4) PROCESSO DE MUDANÇA
+────────────────────────────────────────
+
+Toda mudança deve seguir
+o seguinte fluxo:
+
+1) Identificação da necessidade
+2) Avaliação de impacto
+3) Registro da decisão
+4) Execução controlada
+5) Validação pós-implementação
+
+
+────────────────────────────────────────
+5) APROVAÇÃO DE MUDANÇAS
+────────────────────────────────────────
+
+Mudanças operacionais
+
+Podem ser executadas diretamente
+pela equipe técnica responsável.
+
+
+Mudanças de segurança
+
+Devem ser registradas em runbooks
+ou decision log.
+
+
+Mudanças estruturais
+
+Devem ser avaliadas e aprovadas
+pelo conselho técnico do projeto.
+
+
+────────────────────────────────────────
+6) DOCUMENTAÇÃO
+────────────────────────────────────────
+
+Toda mudança relevante deve ser
+registrada em um dos seguintes documentos:
+
+Infrastructure Decision Log
+
+ou
+
+Runbooks operacionais
+
+
+────────────────────────────────────────
+7) ROLLBACK
+────────────────────────────────────────
+
+Toda mudança deve considerar
+a possibilidade de rollback.
+
+Rollback significa:
+
+restaurar o estado anterior
+da infraestrutura em caso
+de falha ou impacto inesperado.
+
+
+────────────────────────────────────────
+8) RELAÇÃO COM OUTROS DOCUMENTOS
+────────────────────────────────────────
+
+Esta política complementa:
+
+Infrastructure Governance Charter
+Infrastructure Decision Log
+Infrastructure Architecture Overview
+Infrastructure Risk Model
+Infrastructure Evolution Roadmap
+
+
+────────────────────────────────────────
+9) PRINCÍPIO FUNDAMENTAL
+────────────────────────────────────────
+
+Infraestrutura deve evoluir
+de forma gradual, documentada
+e reversível.
+
+Mudanças não documentadas
+não são consideradas válidas
+dentro da governança do projeto.
+
+
+────────────────────────────────────────
+10) CONCLUSÃO
+────────────────────────────────────────
+
+A Infrastructure Change Policy
+estabelece disciplina operacional
+para evolução da infraestrutura
+do iSeek Automations.
+
+Seu objetivo é garantir
+estabilidade, segurança
+e governança técnica.
+
+
+────────────────────────────────────────
+FIM
+
+ISEEK — Infrastructure Change Policy v1.0

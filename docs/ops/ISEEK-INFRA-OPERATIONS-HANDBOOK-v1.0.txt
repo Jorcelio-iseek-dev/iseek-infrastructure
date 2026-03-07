@@ -1,0 +1,202 @@
+# PATH: docs/ops/ISEEK-INFRA-OPERATIONS-HANDBOOK-v1.0.txt
+
+ISEEK — INFRASTRUCTURE OPERATIONS HANDBOOK
+Infrastructure Operations Manual
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Ativo
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento descreve os procedimentos
+operacionais da infraestrutura do
+projeto iSeek Automations.
+
+Ele define:
+
+• práticas operacionais
+• verificações rotineiras
+• resposta a incidentes
+• uso de runbooks técnicos
+
+
+────────────────────────────────────────
+2) INFRAESTRUTURA ATUAL
+────────────────────────────────────────
+
+Ambiente principal:
+
+AWS EC2
+Ubuntu 24.04 LTS
+
+Stack:
+
+Nginx
+PHP-FPM
+Supervisor
+Laravel
+
+Proteção de rede:
+
+Cloudflare (Proxy + WAF)
+
+
+────────────────────────────────────────
+3) RESPONSABILIDADE OPERACIONAL
+────────────────────────────────────────
+
+Operação técnica:
+
+Equipe de engenharia iSeek
+
+Governança:
+
+Conselho técnico
+
+
+Mudanças estruturais devem seguir:
+
+ISEEK-INFRA-CHANGE-POLICY-v1.0.txt
+
+
+────────────────────────────────────────
+4) VERIFICAÇÕES OPERACIONAIS
+────────────────────────────────────────
+
+Diariamente:
+
+• verificar status do servidor
+• verificar disponibilidade HTTP/HTTPS
+• verificar filas de jobs
+
+Comandos úteis:
+
+uptime
+
+systemctl status nginx
+
+systemctl status php8.3-fpm
+
+systemctl status supervisor
+
+
+────────────────────────────────────────
+5) MONITORAMENTO BÁSICO
+────────────────────────────────────────
+
+Verificar:
+
+• disponibilidade HTTP
+• status dos serviços
+• logs do sistema
+
+Logs principais:
+
+/var/log/nginx/
+/var/log/syslog
+
+
+────────────────────────────────────────
+6) BACKUPS
+────────────────────────────────────────
+
+Backups de banco de dados são enviados para:
+
+AWS S3
+
+Bucket:
+
+iseek-core-backups-prod
+
+
+Procedimentos de restore estão documentados
+nos runbooks operacionais.
+
+
+────────────────────────────────────────
+7) SEGURANÇA
+────────────────────────────────────────
+
+Camadas de segurança implementadas:
+
+• firewall UFW
+• Cloudflare WAF
+• proteção de origin server
+• SSH com chave
+
+
+Hardening documentado em:
+
+ISEEK-RUNBOOK-INFRA-SECURITY-HARDENING-v1.1.txt
+
+
+────────────────────────────────────────
+8) RUNBOOKS DISPONÍVEIS
+────────────────────────────────────────
+
+Runbooks operacionais estão localizados em:
+
+docs/runbooks/
+
+
+Exemplos:
+
+ISEEK-RUNBOOK-INFRA-SECURITY-HARDENING-v1.1.txt
+
+ISEEK-RUNBOOK-CLOUDFLARE-ORIGIN-PROTECTION-v1.0.txt
+
+
+────────────────────────────────────────
+9) INCIDENT RESPONSE
+────────────────────────────────────────
+
+Em caso de incidente:
+
+1) verificar status do servidor
+
+2) verificar logs do sistema
+
+3) verificar status do Nginx
+
+4) verificar status do banco
+
+
+Se necessário, executar procedimentos
+definidos nos runbooks.
+
+
+────────────────────────────────────────
+10) GOVERNANÇA
+────────────────────────────────────────
+
+Mudanças na infraestrutura devem seguir:
+
+ISEEK-INFRA-CHANGE-POLICY-v1.0.txt
+
+
+Decisões técnicas devem ser registradas em:
+
+ISEEK-INFRA-DECISION-LOG-v1.0.txt
+
+
+────────────────────────────────────────
+11) REGISTRO INSTITUCIONAL
+────────────────────────────────────────
+
+Infraestrutura atual está registrada em:
+
+ISEEK-INFRA-2026-001
+
+Infra Core SaaS Baseline v1.0
+
+
+────────────────────────────────────────
+FIM

@@ -1,0 +1,152 @@
+# PATH: docs/runbooks/infra/ISEEK-RUNBOOK-cloudflare-security.txt
+
+ISEEK — RUNBOOK COMPLEMENTAR
+Cloudflare Security Configuration
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura: AWS EC2 + Nginx + PHP-FPM
+CDN/WAF: Cloudflare
+Versão: 1.0
+Data: 2026-03-05
+
+────────────────────────────────────────
+1) Bot Protection
+────────────────────────────────────────
+
+Painel Cloudflare:
+
+Security → Bots
+
+Configurar:
+
+Bot Fight Mode: ON
+
+Objetivo:
+
+Bloquear bots maliciosos,
+scanners automáticos
+e crawlers abusivos.
+
+────────────────────────────────────────
+2) Proteção de Login
+────────────────────────────────────────
+
+Security → WAF → Custom Rules
+
+Criar regra:
+
+Field: URI Path
+Operator: contains
+Value: /login
+
+Action:
+
+Managed Challenge
+
+Objetivo:
+
+Mitigar ataques de força bruta
+contra login do sistema.
+
+────────────────────────────────────────
+3) Proteção da API
+────────────────────────────────────────
+
+Security → WAF → Rate Limiting Rules
+
+Criar regra:
+
+URI Path starts with:
+
+/api
+
+Configuração:
+
+100 requests
+per 60 seconds
+
+Action:
+
+Block
+
+Objetivo:
+
+Evitar abuso ou ataque
+de flood contra endpoints API.
+
+────────────────────────────────────────
+4) Proteção contra Scraping
+────────────────────────────────────────
+
+Security → WAF → Custom Rules
+
+Criar regra:
+
+Field: Bot Score
+Operator: less than
+Value: 30
+
+Action:
+
+Managed Challenge
+
+Objetivo:
+
+Bloquear bots suspeitos
+tentando coletar dados do sistema.
+
+────────────────────────────────────────
+5) Remover Header de Servidor
+────────────────────────────────────────
+
+Rules → Transform Rules
+
+Criar regra para remover header:
+
+Server
+
+Objetivo:
+
+Evitar fingerprint da infraestrutura.
+
+────────────────────────────────────────
+6) Cache Inteligente
+────────────────────────────────────────
+
+Caching → Configuration
+
+Browser Cache TTL:
+
+4 hours
+
+Objetivo:
+
+Melhorar performance do sistema
+sem comprometer dados dinâmicos.
+
+────────────────────────────────────────
+Resultado Esperado
+────────────────────────────────────────
+
+Cloudflare atuando como:
+
+WAF
+Bot Protection
+Rate Limiting
+CDN
+Camada de segurança da aplicação.
+
+Fluxo:
+
+Usuário
+ ↓
+Cloudflare
+ ↓
+EC2
+ ↓
+Aplicação iSeek
+
+────────────────────────────────────────
+
+FIM

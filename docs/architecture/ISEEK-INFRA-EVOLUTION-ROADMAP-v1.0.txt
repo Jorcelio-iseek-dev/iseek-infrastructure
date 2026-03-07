@@ -1,0 +1,214 @@
+# PATH: docs/architecture/ISEEK-INFRA-evolution-roadmap-v1.0.txt
+
+ISEEK — INFRASTRUCTURE EVOLUTION ROADMAP
+Infra Evolution Roadmap v1.0
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Documento Arquitetural
+
+Alinhamento:
+
+Infra Core SaaS Baseline v1.0 — Frozen
+Registro: ISEEK-INFRA-2026-001
+Repositório: iseek-infrastructure
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este documento descreve a evolução planejada
+da infraestrutura do iSeek Automations
+a partir do baseline operacional v1.0.
+
+Objetivo:
+
+• orientar evolução técnica
+• preservar estabilidade estrutural
+• evitar mudanças caóticas
+• permitir crescimento controlado
+
+Este roadmap não executa infraestrutura.
+Ele apenas descreve possíveis direções.
+
+
+────────────────────────────────────────
+2) ESTADO ATUAL — BASELINE v1.0
+────────────────────────────────────────
+
+Infraestrutura atual:
+
+Internet
+   ↓
+Cloudflare
+   ↓
+AWS EC2
+   ↓
+UFW Firewall
+   ↓
+Nginx
+   ↓
+PHP-FPM
+   ↓
+Laravel
+   ↓
+MySQL
+
+Características:
+
+✔ Cloudflare Proxy ativo
+✔ Firewall EC2 ativo
+✔ Backup automático S3
+✔ Restore validado
+✔ SSL ativo
+✔ Aplicação operacional
+
+Este estado foi congelado como:
+
+ISEEK — Infra Core SaaS Baseline v1.0
+
+
+────────────────────────────────────────
+3) EVOLUÇÃO v1.1 — SECURITY HARDENING
+────────────────────────────────────────
+
+Objetivo:
+
+Aumentar segurança sem alterar arquitetura.
+
+Possíveis melhorias:
+
+• Fail2ban
+• Security headers Nginx
+• SSH hardening
+• Atualizações automáticas
+• Cloudflare WAF rules
+
+Arquitetura permanece igual.
+
+Esta fase já iniciou com:
+
+Infra Security Hardening v1.1
+
+
+────────────────────────────────────────
+4) EVOLUÇÃO v1.2 — OBSERVABILIDADE
+────────────────────────────────────────
+
+Objetivo:
+
+Melhorar visibilidade operacional.
+
+Possíveis componentes:
+
+• CloudWatch logs
+• métricas EC2
+• monitoramento uptime
+• alertas operacionais
+• centralização de logs
+
+Benefício:
+
+Detecção antecipada de problemas.
+
+
+────────────────────────────────────────
+5) EVOLUÇÃO v1.3 — RESILIÊNCIA
+────────────────────────────────────────
+
+Objetivo:
+
+Aumentar tolerância a falhas.
+
+Possíveis melhorias:
+
+• backup multi-região
+• snapshots automatizados
+• testes periódicos de restore
+• health checks automatizados
+
+
+────────────────────────────────────────
+6) EVOLUÇÃO v2.0 — ESCALABILIDADE
+────────────────────────────────────────
+
+Quando necessário.
+
+Possível evolução arquitetural:
+
+Internet
+   ↓
+Cloudflare
+   ↓
+Load Balancer
+   ↓
+EC2 cluster
+   ↓
+Application layer
+   ↓
+Database
+
+Possíveis componentes:
+
+• Auto Scaling
+• Load Balancer
+• Redis
+• fila distribuída
+
+
+────────────────────────────────────────
+7) PRINCÍPIOS DE EVOLUÇÃO
+────────────────────────────────────────
+
+Toda evolução deve respeitar:
+
+1) Não quebrar produção
+2) Não alterar baseline congelado
+3) Criar nova versão documentada
+4) Registrar mudanças no repository
+5) Validar rollback possível
+
+
+────────────────────────────────────────
+8) POLÍTICA DE VERSIONAMENTO
+────────────────────────────────────────
+
+Cada evolução relevante deve gerar:
+
+Novo runbook
+ou
+Novo registro institucional.
+
+Exemplo:
+
+Infra Core SaaS Baseline v1.0
+Infra Security Hardening v1.1
+Infra Observability v1.2
+Infra Resilience v1.3
+Infra Scale v2.0
+
+
+────────────────────────────────────────
+9) CONCLUSÃO
+────────────────────────────────────────
+
+O iSeek Automations inicia com
+uma infraestrutura simples, estável
+e bem documentada.
+
+A evolução ocorrerá gradualmente,
+preservando estabilidade operacional
+e disciplina arquitetural.
+
+
+────────────────────────────────────────
+FIM
+
+ISEEK — Infrastructure Evolution Roadmap v1.0

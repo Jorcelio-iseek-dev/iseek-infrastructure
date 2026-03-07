@@ -1,0 +1,326 @@
+# PATH: docs/architecture/ISEEK-INFRA-architecture-overview-v1.0.txt
+
+ISEEK — INFRASTRUCTURE ARCHITECTURE OVERVIEW
+Infra Architecture Overview v1.0
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura: AWS EC2 + Cloudflare
+Sistema Operacional: Ubuntu 24.04 LTS
+Stack: Nginx + PHP-FPM + Supervisor + Laravel
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Documento Institucional
+
+Alinhamento:
+
+Infra Core SaaS Baseline v1.0 — Frozen
+Registro: ISEEK-INFRA-2026-001
+Repositório: iseek-infrastructure
+
+Este documento descreve a arquitetura operacional
+da infraestrutura do iSeek Automations após validação
+do baseline mínimo de produção.
+
+
+────────────────────────────────────────
+1) OBJETIVO
+────────────────────────────────────────
+
+Documentar a arquitetura da infraestrutura
+utilizada pelo iSeek Automations.
+
+Este documento tem função:
+
+• institucional
+• arquitetural
+• documental
+
+Não executa infraestrutura.
+Não altera arquitetura.
+Não contém scripts operacionais.
+
+Scripts e comandos encontram-se
+nos runbooks.
+
+
+────────────────────────────────────────
+2) VISÃO GERAL DA ARQUITETURA
+────────────────────────────────────────
+
+Fluxo principal de acesso:
+
+Internet
+   ↓
+Cloudflare (DNS + WAF + CDN)
+   ↓
+AWS EC2 (Elastic IP)
+   ↓
+UFW Firewall
+   ↓
+Nginx Web Server
+   ↓
+PHP-FPM
+   ↓
+Laravel Application
+   ↓
+MySQL Database
+
+
+────────────────────────────────────────
+3) COMPONENTES PRINCIPAIS
+────────────────────────────────────────
+
+3.1 Cloudflare
+
+Funções:
+
+• DNS público
+• Proxy reverso
+• Web Application Firewall
+• CDN
+• Proteção DDoS
+• Ocultação do IP da EC2
+
+Modo de operação:
+
+Proxy ativo (Proxied).
+
+Domínio:
+
+app.iseek.com.br
+
+
+────────────────────────────────────────
+3.2 AWS EC2
+
+Função:
+
+Servidor principal da aplicação.
+
+Configuração atual:
+
+Provider: Amazon Web Services
+Tipo: EC2 Instance
+Sistema: Ubuntu 24.04 LTS
+IP: Elastic IP público
+
+Responsabilidades:
+
+• execução da aplicação
+• processamento de requests
+• execução de workers
+• execução de cron jobs
+
+
+────────────────────────────────────────
+3.3 Firewall (UFW)
+────────────────────────────────────────
+
+Firewall ativo na instância EC2.
+
+Política:
+
+deny incoming
+allow outgoing
+
+Regras principais:
+
+SSH (22) permitido
+HTTP (80) permitido apenas Cloudflare
+HTTPS (443) permitido apenas Cloudflare
+
+Objetivo:
+
+Impedir acesso direto ao servidor
+fora da rede Cloudflare.
+
+
+────────────────────────────────────────
+3.4 Web Server (Nginx)
+────────────────────────────────────────
+
+Função:
+
+Servidor HTTP responsável por:
+
+• receber requisições
+• servir assets
+• encaminhar requisições ao PHP-FPM
+
+Características:
+
+• suporte HTTPS
+• headers de segurança
+• integração com Certbot
+
+
+────────────────────────────────────────
+3.5 PHP-FPM
+────────────────────────────────────────
+
+Responsável por executar
+o código PHP da aplicação.
+
+Integração direta com Nginx.
+
+
+────────────────────────────────────────
+3.6 Laravel Application
+────────────────────────────────────────
+
+Framework principal da aplicação.
+
+Responsável por:
+
+• lógica de negócio
+• APIs
+• automações
+• integrações externas
+• gestão multi-tenant
+
+
+────────────────────────────────────────
+3.7 Database
+────────────────────────────────────────
+
+Banco de dados:
+
+MySQL
+
+Funções:
+
+• persistência de dados
+• armazenamento de tenants
+• automações
+• integrações
+• logs operacionais
+
+
+────────────────────────────────────────
+4) BACKUP E RECUPERAÇÃO
+────────────────────────────────────────
+
+Backup automatizado diário.
+
+Execução:
+
+mysqldump
+
+Script:
+
+/usr/local/bin/iseek-db-backup.sh
+
+Agendamento:
+
+Cron diário.
+
+
+Destino:
+
+AWS S3
+
+Bucket:
+
+iseek-core-backups-prod
+
+Estrutura:
+
+mysql/iseek_ia/
+
+
+Restore:
+
+Testado com sucesso
+em ambiente isolado.
+
+
+────────────────────────────────────────
+5) SEGURANÇA
+────────────────────────────────────────
+
+Camadas de segurança aplicadas:
+
+1) Cloudflare WAF
+2) Cloudflare proxy
+3) Firewall EC2 (UFW)
+4) SSH key authentication
+5) Backup externo
+6) Restore validado
+
+
+────────────────────────────────────────
+6) FLUXO DE REQUEST
+────────────────────────────────────────
+
+Fluxo de uma requisição típica:
+
+Usuário
+   ↓
+Cloudflare DNS resolve domínio
+   ↓
+Cloudflare aplica WAF e proteção
+   ↓
+Cloudflare encaminha request
+   ↓
+EC2 recebe request
+   ↓
+Nginx processa requisição
+   ↓
+PHP-FPM executa aplicação Laravel
+   ↓
+Laravel consulta banco MySQL
+   ↓
+Resposta retorna ao usuário
+
+
+────────────────────────────────────────
+7) ESTADO OPERACIONAL
+────────────────────────────────────────
+
+Infraestrutura atual:
+
+Produção ativa.
+
+Itens validados:
+
+✔ DNS funcionando
+✔ Cloudflare proxy ativo
+✔ Firewall ativo
+✔ Backup externo ativo
+✔ Restore validado
+✔ Aplicação operacional
+
+
+────────────────────────────────────────
+8) BASELINE OPERACIONAL
+────────────────────────────────────────
+
+Estado atual registrado como:
+
+ISEEK — Infra Core SaaS Baseline v1.0
+
+Status:
+
+Frozen
+
+
+────────────────────────────────────────
+9) EVOLUÇÕES FUTURAS
+────────────────────────────────────────
+
+Evoluções planejadas:
+
+• Hardening adicional
+• Monitoramento
+• Rate limiting
+• Observabilidade
+• métricas operacionais
+• melhorias de segurança
+
+
+────────────────────────────────────────
+FIM
+
+ISEEK — Infrastructure Architecture Overview v1.0

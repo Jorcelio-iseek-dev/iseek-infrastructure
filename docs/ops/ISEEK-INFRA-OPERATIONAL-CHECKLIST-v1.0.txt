@@ -1,0 +1,181 @@
+# PATH: docs/ops/ISEEK-INFRA-OPERATIONAL-CHECKLIST-v1.0.txt
+
+ISEEK — INFRASTRUCTURE OPERATIONAL CHECKLIST
+Infrastructure Health Verification
+
+Projeto: iSeek Automations
+Domínio Produção: app.iseek.com.br
+Infraestrutura Base: AWS EC2 + Cloudflare
+
+Versão: v1.0
+Data: 2026-03-06
+Status: Ativo
+
+
+────────────────────────────────────────
+1) PROPÓSITO
+────────────────────────────────────────
+
+Este checklist permite verificar rapidamente
+o estado operacional da infraestrutura
+do projeto iSeek Automations.
+
+Pode ser utilizado em:
+
+• revisões operacionais
+• auditorias internas
+• reuniões de conselho técnico
+• verificação periódica da infraestrutura
+
+
+────────────────────────────────────────
+2) DISPONIBILIDADE DO SISTEMA
+────────────────────────────────────────
+
+[ ] Servidor EC2 acessível
+
+[ ] Aplicação respondendo via HTTPS
+
+Teste recomendado:
+
+curl -I https://app.iseek.com.br
+
+
+────────────────────────────────────────
+3) SERVIÇOS DO SISTEMA
+────────────────────────────────────────
+
+Verificar serviços essenciais:
+
+[ ] nginx ativo
+
+systemctl status nginx
+
+
+[ ] php-fpm ativo
+
+systemctl status php8.3-fpm
+
+
+[ ] supervisor ativo
+
+systemctl status supervisor
+
+
+────────────────────────────────────────
+4) PROTEÇÃO DE REDE
+────────────────────────────────────────
+
+[ ] Cloudflare proxy ativo
+
+[ ] Firewall UFW ativo
+
+sudo ufw status
+
+
+[ ] Origin server protegido
+
+Acesso direto ao IP deve estar bloqueado.
+
+
+────────────────────────────────────────
+5) BACKUPS
+────────────────────────────────────────
+
+[ ] Backup diário executado
+
+[ ] Arquivo de backup presente no bucket S3
+
+Bucket esperado:
+
+iseek-core-backups-prod
+
+
+Verificação recomendada:
+
+aws s3 ls s3://iseek-core-backups-prod/
+
+
+────────────────────────────────────────
+6) LOGS
+────────────────────────────────────────
+
+Verificar logs principais:
+
+[ ] logs nginx sem erros críticos
+
+/var/log/nginx/
+
+
+[ ] logs sistema sem erros relevantes
+
+/var/log/syslog
+
+
+────────────────────────────────────────
+7) SEGURANÇA
+────────────────────────────────────────
+
+[ ] SSH com login por chave
+
+[ ] root login desabilitado
+
+[ ] fail2ban ativo
+
+
+Verificação:
+
+systemctl status fail2ban
+
+
+────────────────────────────────────────
+8) DOCUMENTAÇÃO
+────────────────────────────────────────
+
+[ ] baseline registrado
+
+ISEEK-INFRA-2026-001
+
+
+[ ] runbooks atualizados
+
+docs/runbooks/
+
+
+[ ] decision log atualizado
+
+docs/governance/
+
+
+────────────────────────────────────────
+9) RESULTADO DA VERIFICAÇÃO
+────────────────────────────────────────
+
+Data da verificação:
+
+________________________
+
+
+Responsável:
+
+________________________
+
+
+Resultado geral:
+
+[ ] Infraestrutura saudável
+
+[ ] Ajustes necessários
+
+
+Observações:
+
+________________________________________________
+
+________________________________________________
+
+
+────────────────────────────────────────
+FIM
+
+
